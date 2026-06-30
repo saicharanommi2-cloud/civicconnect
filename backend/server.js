@@ -5,12 +5,14 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import aiRoutes from "./routes/ai.js";
 import authRoutes from "./routes/auth.js";
 import issuesRoutes from "./routes/issues.js";
 
 console.log("JWT_SECRET:", process.env.JWT_SECRET ? "Loaded" : "Missing");
 console.log("EMAIL_USER:", process.env.EMAIL_USER ? "Loaded" : "Missing");
 console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "Loaded" : "Missing");
+console.log("GEMINI_API_KEY:", process.env.GEMINI_API_KEY ? "Loaded" : "Missing");
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -35,6 +37,7 @@ app.get("/api/health", (_req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/issues", issuesRoutes);
+app.use("/api/ai", aiRoutes);
 
 app.use("/api", (_req, res) => {
   res.status(404).json({

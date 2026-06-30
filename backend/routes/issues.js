@@ -60,8 +60,9 @@ router.post("/", optionalAuth, upload.array("media", 6), (req, res) => {
       lng ? Number(lng) : null,
       JSON.stringify(mediaFilenames)
     );
-
+  console.log("✅ Report inserted. ID:", result.lastInsertRowid);
   const issue = db.prepare("SELECT * FROM issues WHERE id = ?").get(result.lastInsertRowid);
+  console.log(issue);
   res.status(201).json({ issue: serializeIssue(issue) });
 });
 

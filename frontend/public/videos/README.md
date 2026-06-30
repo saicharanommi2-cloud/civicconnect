@@ -1,4 +1,4 @@
-# Hero videos
+cd # Hero videos
 
 This folder ships with 4 small placeholder clips (looping color-pulse
 animations, color-matched to each portal's glow) so the hero section
